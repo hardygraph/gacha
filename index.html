@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Mystery Ball</title>
+    <link rel="stylesheet" href="barang.css" />
+    <style>
+      /* Mobile optimization */
+      @media (max-width: 480px) {
+        .app-container {
+          margin: 0;
+          max-width: 100%;
+          border-radius: 0;
+          min-height: 100vh;
+        }
+        
+        body {
+          margin: 0;
+          padding: 0;
+          padding-bottom: 80px;
+        }
+        
+        header {
+          border-radius: 0;
+        }
+        
+        .barang-list {
+          padding: 16px 12px;
+        }
+        
+        .barang-item {
+          margin-bottom: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <header>
+        <h1>Mystery Ball</h1>
+      </header>
+      <nav class="menu-tabs">
+        <button id="tab-20000" class="active" onclick="showPaket('20000')">
+          Paket 20.000
+        </button>
+        <button id="tab-30000" onclick="showPaket('30000')">
+          Paket 30.000
+        </button>
+      </nav>
+      <main>
+        <section id="paket-20000" class="paket-section">
+          <!-- <h2>Paket 20.000</h2> -->
+          <div class="barang-list" id="list-20000"></div>
+          <!-- pengeluaran dihapus -->
+        </section>
+        <section id="paket-30000" class="paket-section" style="display: none">
+          <!-- <h2>Paket 30.000</h2> -->
+          <div class="barang-list" id="list-30000"></div>
+          <!-- pengeluaran dihapus -->
+        </section>
+      </main>
+    </div>
+    <script src="barang.js"></script>
+    <!-- Navbar bawah -->
+    <div id="navbar-placeholder"></div>
+    <script>
+      fetch("navbar.html")
+        .then((r) => r.text())
+        .then((html) => {
+          document.getElementById("navbar-placeholder").innerHTML = html;
+        });
+    </script>
+  </body>
+</html>

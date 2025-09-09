@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Laporan Pemasukan</title>
+    <link rel="stylesheet" href="barang.css" />
+    <style>
+      .laporan-container {
+        max-width: 430px;
+        margin: 0 auto;
+        padding: 18px 12px 18px 12px;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(79, 140, 255, 0.13);
+        border: 1.5px solid #e0e7ff;
+      }
+      .laporan-title {
+        font-size: 1.35em;
+        font-weight: 800;
+        color: #2563eb;
+        margin-bottom: 10px;
+        letter-spacing: 0.5px;
+        text-align: center;
+      }
+      .laporan-desc {
+        font-size: 0.98em;
+        color: #4f8cff;
+        background: #e0e7ff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .laporan-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 18px;
+        font-size: 1.01em;
+      }
+      .laporan-table th {
+        background: linear-gradient(90deg, #4f8cff 60%, #6fd6ff 100%);
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        padding: 10px 6px;
+        font-size: 1.07em;
+        letter-spacing: 0.2px;
+      }
+      .laporan-table td {
+        background: #f9fbff;
+        border-bottom: 1.5px solid #e0e7ff;
+        padding: 8px 6px;
+        text-align: center;
+      }
+      .laporan-table tr:last-child td {
+        border-bottom: none;
+      }
+      .badge-paket {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.98em;
+        font-weight: 700;
+        color: #fff;
+        background: #4f8cff;
+        margin-right: 2px;
+      }
+      .badge-paket.p30 {
+        background: #22c55e;
+      }
+      .laporan-summary {
+        font-size: 1.08em;
+        color: #222;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+      .laporan-highlight {
+        background: #e0f7e9;
+        color: #1a7f37;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-weight: 700;
+        margin: 10px 0 8px 0;
+        text-align: center;
+        font-size: 1.13em;
+        box-shadow: 0 1px 8px rgba(34, 197, 94, 0.07);
+      }
+      .laporan-summary strong {
+        color: #4f8cff;
+      }
+      
+      /* Pastikan navbar fixed */
+      .bottom-navbar {
+        position: fixed !important;
+        bottom: 0 !important;
+        z-index: 1000 !important;
+      }
+      
+      /* Tambah padding untuk navbar */
+      body {
+        padding-bottom: 80px !important;
+      }
+      
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .laporan-container {
+          padding: 10px !important;
+          margin: 0 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        
+        .laporan-title {
+          font-size: 18px !important;
+          margin-bottom: 15px !important;
+          padding: 15px !important;
+        }
+        
+        .laporan-desc {
+          font-size: 13px !important;
+          padding: 10px 15px !important;
+          margin-bottom: 15px !important;
+          line-height: 1.4 !important;
+        }
+        
+        .badge-paket {
+          font-size: 11px !important;
+          padding: 3px 6px !important;
+        }
+        
+        .laporan-summary {
+          font-size: 14px !important;
+          padding: 12px 15px !important;
+          margin-bottom: 15px !important;
+        }
+        
+        .laporan-table {
+          font-size: 12px !important;
+          margin: 0 10px !important;
+        }
+        
+        .laporan-table th,
+        .laporan-table td {
+          padding: 8px 4px !important;
+          font-size: 12px !important;
+        }
+        
+        .laporan-table th {
+          font-size: 11px !important;
+        }
+        
+        body {
+          font-size: 14px !important;
+          padding-bottom: 90px !important;
+        }
+        
+        .bottom-navbar {
+          height: 70px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="laporan-container">
+      <div class="laporan-title">
+        <span style="font-size: 1.2em; vertical-align: -2px">📊</span> Laporan
+        Perorangan Gacha
+      </div>
+      <div class="laporan-desc">
+        Rekap pembelian gacha per paket dan per orang.<br />
+        <span class="badge-paket">20.000</span> 1 orang: 5-7 barang
+        &nbsp;|&nbsp; <span class="badge-paket p30">30.000</span> 1 orang: 8-10
+        barang.<br />
+        Jika lebih, akan dihitung sebagai orang baru.
+      </div>
+      <div class="laporan-summary" id="summary"></div>
+      <table class="laporan-table">
+        <thead>
+          <tr>
+            <th>Paket</th>
+            <th>Orang</th>
+            <th>Jumlah Barang</th>
+            <th>Total Pengeluaran</th>
+            <th>Keuntungan</th>
+          </tr>
+        </thead>
+        <tbody id="laporan-body"></tbody>
+      </table>
+      <div class="laporan-highlight" id="paket-20000-info"></div>
+      <div class="laporan-highlight" id="paket-30000-info"></div>
+      <div class="laporan-highlight" id="keuntungan-total"></div>
+    </div>
+    <script src="laporan.js"></script>
+    <!-- Navbar bawah -->
+    <div id="navbar-placeholder"></div>
+    <script>
+      fetch("navbar.html")
+        .then((r) => r.text())
+        .then((html) => {
+          document.getElementById("navbar-placeholder").innerHTML = html;
+        });
+    </script>
+  </body>
+</html>

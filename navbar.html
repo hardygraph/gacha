@@ -1,0 +1,113 @@
+<!-- Navbar bawah untuk mobile app -->
+<nav class="bottom-navbar">
+  <a href="index.html" class="nav-btn" id="nav-home">
+    <span style="font-size: 1.3em; display: block">🎲</span>
+    <span>Gacha</span>
+  </a>
+  <a href="admin.html" class="nav-btn" id="nav-admin">
+    <span style="font-size: 1.3em; display: block">➕</span>
+    <span>Tambah</span>
+  </a>
+  <a href="stok.html" class="nav-btn" id="nav-stok">
+    <span style="font-size: 1.3em; display: block">📦</span>
+    <span>Stok</span>
+  </a>
+  <a href="laporan.html" class="nav-btn" id="nav-laporan">
+    <span style="font-size: 1.3em; display: block">📊</span>
+    <span>Laporan</span>
+  </a>
+</nav>
+<style>
+  .bottom-navbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 62px;
+    background: #fff;
+    border-top: 2px solid #e0e7ff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 -2px 12px rgba(79, 140, 255, 0.07);
+  }
+  .bottom-navbar .nav-btn {
+    flex: 1;
+    text-align: center;
+    color: #4f8cff;
+    font-size: 1.08em;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+    text-decoration: none;
+    padding: 6px 0 0 0;
+    transition: color 0.2s, background 0.2s;
+    border-radius: 0;
+    position: relative;
+  }
+  .bottom-navbar .nav-btn.active,
+  .bottom-navbar .nav-btn:active {
+    color: #2563eb;
+    font-weight: 700;
+    background: #e0e7ff;
+    border-top: 3px solid #4f8cff;
+  }
+  .bottom-navbar .nav-btn span {
+    display: block;
+    font-size: 1em;
+    line-height: 1.1;
+  }
+  .bottom-navbar .nav-btn span:first-child {
+    margin-bottom: 2px;
+  }
+  
+  /* Mobile optimizations untuk navbar */
+  @media (max-width: 768px) {
+    .bottom-navbar {
+      height: 70px !important;
+      padding: 5px 0 !important;
+    }
+    .bottom-navbar .nav-btn {
+      font-size: 0.95em !important;
+      padding: 8px 0 0 0 !important;
+    }
+    .bottom-navbar .nav-btn span:first-child {
+      font-size: 1.2em !important;
+      margin-bottom: 3px !important;
+    }
+    .bottom-navbar .nav-btn span:last-child {
+      font-size: 0.85em !important;
+      line-height: 1 !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .bottom-navbar {
+      height: 65px !important;
+    }
+    .bottom-navbar .nav-btn {
+      font-size: 0.9em !important;
+    }
+    .bottom-navbar .nav-btn span:first-child {
+      font-size: 1.1em !important;
+    }
+    .bottom-navbar .nav-btn span:last-child {
+      font-size: 0.8em !important;
+    }
+  }
+</style>
+<script>
+  // Highlight tab aktif otomatis
+  const navs = [
+    { id: "nav-home", file: "index.html" },
+    { id: "nav-admin", file: "admin.html" },
+    { id: "nav-stok", file: "stok.html" },
+    { id: "nav-laporan", file: "laporan.html" },
+  ];
+  const now = window.location.pathname.split("/").pop();
+  navs.forEach((n) => {
+    if (now === n.file) {
+      const el = document.getElementById(n.id);
+      if (el) el.classList.add("active");
+    }
+  });
+</script>

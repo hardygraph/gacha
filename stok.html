@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Update Stok Barang</title>
+    <link rel="stylesheet" href="barang.css" />
+    <style>
+      .stok-container {
+        max-width: 430px;
+        margin: 0 auto;
+        padding: 18px 12px 18px 12px;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(79, 140, 255, 0.13);
+        border: 1.5px solid #e0e7ff;
+      }
+      .stok-title {
+        font-size: 1.25em;
+        font-weight: 800;
+        color: #2563eb;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+        text-align: center;
+      }
+      .stok-desc {
+        font-size: 0.98em;
+        color: #4f8cff;
+        background: #e0e7ff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .barang-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+      .barang-item.grid-icon {
+        background: linear-gradient(135deg, #f9fbff 60%, #e0e7ff 100%);
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(79, 140, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 6px 12px 6px;
+        min-width: 0;
+        position: relative;
+        border: 2.5px solid transparent;
+        transition: border 0.2s, box-shadow 0.2s, transform 0.15s;
+      }
+      .barang-item.grid-icon:hover {
+        border: 2.5px solid #6fd6ff;
+        box-shadow: 0 4px 16px rgba(79, 140, 255, 0.18);
+        transform: translateY(-2px) scale(1.04);
+        z-index: 2;
+      }
+      .barang-item.grid-icon img {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #e0e7ff;
+        margin-bottom: 6px;
+        box-shadow: 0 1px 6px rgba(79, 140, 255, 0.08);
+      }
+      .barang-item.grid-icon .nama {
+        font-size: 1.05em;
+        font-weight: 700;
+        margin-bottom: 2px;
+        text-align: center;
+        color: #3a4a6b;
+        letter-spacing: 0.2px;
+      }
+      .barang-item.grid-icon .stok {
+        color: #6b7a99;
+        font-size: 0.92em;
+        margin-bottom: 2px;
+      }
+      .barang-item.grid-icon .input-tambah-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .barang-item.grid-icon .input-stok {
+        width: 50px;
+        border-radius: 6px;
+        border: 1px solid #c7d2fe;
+        padding: 2px 4px;
+        text-align: center;
+      }
+      .barang-item.grid-icon .btn-tambah {
+        background: #4f8cff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .barang-item.grid-icon .btn-tambah:active {
+        background: #2563eb;
+      }
+      .barang-item.grid-icon .success-msg {
+        color: #22c55e;
+        font-size: 0.93em;
+        margin-top: 4px;
+        font-weight: 600;
+        text-align: center;
+      }
+      
+      /* Pastikan navbar fixed */
+      .bottom-navbar {
+        position: fixed !important;
+        bottom: 0 !important;
+        z-index: 1000 !important;
+      }
+      
+      /* Tambah padding untuk navbar */
+      body {
+        padding-bottom: 80px !important;
+      }
+      
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .stok-container {
+          padding: 10px !important;
+          margin: 0 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        
+        .stok-title {
+          font-size: 18px !important;
+          margin-bottom: 15px !important;
+          padding: 15px !important;
+        }
+        
+        .stok-deskripsi {
+          font-size: 13px !important;
+          padding: 10px 15px !important;
+          margin-bottom: 15px !important;
+        }
+        
+        .barang-list {
+          padding: 10px !important;
+          gap: 10px !important;
+        }
+        
+        .barang-item.grid-icon {
+          padding: 12px !important;
+          margin-bottom: 10px !important;
+        }
+        
+        .barang-item.grid-icon .nama-barang {
+          font-size: 14px !important;
+          margin-bottom: 8px !important;
+        }
+        
+        .barang-item.grid-icon .stok-current {
+          font-size: 12px !important;
+          margin-bottom: 8px !important;
+        }
+        
+        .barang-item.grid-icon .input-stok {
+          width: 60px !important;
+          padding: 8px !important;
+          font-size: 14px !important;
+        }
+        
+        .barang-item.grid-icon .btn-tambah {
+          padding: 8px 12px !important;
+          font-size: 14px !important;
+        }
+        
+        body {
+          font-size: 14px !important;
+          padding-bottom: 90px !important;
+        }
+        
+        .bottom-navbar {
+          height: 70px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stok-container">
+      <div class="stok-title">
+        <span style="font-size: 1.2em; vertical-align: -2px">📦</span> Update
+        Stok Barang
+      </div>
+      <div class="stok-desc">
+        Tambahkan stok barang dengan mudah.<br />
+        Pilih barang, masukkan jumlah, lalu klik <b>add</b>.<br />
+        Stok akan langsung sinkron ke halaman gacha.
+      </div>
+      <div class="barang-list" id="barang-list-stok"></div>
+    </div>
+    <div id="navbar-placeholder"></div>
+    <script>
+      fetch("navbar.html")
+        .then((r) => r.text())
+        .then((html) => {
+          document.getElementById("navbar-placeholder").innerHTML = html;
+        });
+    </script>
+    <script src="stok.js"></script>
+  </body>
+</html>

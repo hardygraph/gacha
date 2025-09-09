@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Admin Barang</title>
+    <link rel="stylesheet" href="barang.css" />
+    <style>
+      .admin-container {
+        max-width: 430px;
+        margin: 0 auto;
+        padding: 18px 12px 18px 12px;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(79, 140, 255, 0.13);
+        border: 1.5px solid #e0e7ff;
+      }
+      .admin-title {
+        font-size: 1.25em;
+        font-weight: 800;
+        color: #2563eb;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+        text-align: center;
+      }
+      .admin-desc {
+        font-size: 0.98em;
+        color: #4f8cff;
+        background: #e0e7ff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .admin-form {
+        margin-bottom: 28px;
+        background: #f9fbff;
+        border-radius: 12px;
+        padding: 14px 10px 10px 10px;
+        box-shadow: 0 1px 8px rgba(79, 140, 255, 0.07);
+      }
+      .admin-form label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #2563eb;
+      }
+      .admin-form input,
+      .admin-form select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border-radius: 6px;
+        border: 1px solid #c7d2fe;
+        font-size: 1em;
+      }
+      .admin-form button {
+        background: linear-gradient(90deg, #4f8cff 60%, #6fd6ff 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 18px;
+        font-size: 1.08em;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 1px 6px rgba(79, 140, 255, 0.08);
+        transition: background 0.2s;
+      }
+      .admin-form button:active {
+        background: #2563eb;
+      }
+      .admin-section-title {
+        font-size: 1.1em;
+        font-weight: 700;
+        margin: 18px 0 8px 0;
+        color: #4f8cff;
+        text-align: center;
+      }
+      .barang-list-admin {
+        margin-bottom: 18px;
+      }
+      .barang-list-admin li {
+        margin-bottom: 6px;
+      }
+      
+      /* Pastikan navbar fixed */
+      .bottom-navbar {
+        position: fixed !important;
+        bottom: 0 !important;
+        z-index: 1000 !important;
+      }
+      
+      /* Tambah padding untuk navbar */
+      body {
+        padding-bottom: 80px !important;
+      }
+      
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .admin-container {
+          padding: 10px !important;
+          margin: 0 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        
+        .item-form-admin {
+          padding: 15px !important;
+          margin: 0 0 15px 0 !important;
+        }
+        
+        .item-form-admin h3 {
+          font-size: 18px !important;
+          margin-bottom: 15px !important;
+        }
+        
+        .item-form-admin input,
+        .item-form-admin button {
+          font-size: 16px !important;
+          padding: 12px !important;
+          margin: 5px 0 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        
+        .barang-list-admin {
+          padding: 15px !important;
+          margin: 0 !important;
+        }
+        
+        .barang-list-admin h3 {
+          font-size: 18px !important;
+          margin-bottom: 15px !important;
+        }
+        
+        .barang-list-admin li {
+          font-size: 14px !important;
+          padding: 8px !important;
+          margin-bottom: 8px !important;
+        }
+        
+        body {
+          font-size: 14px !important;
+          padding-bottom: 90px !important;
+        }
+        
+        .bottom-navbar {
+          height: 70px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin-container">
+      <div class="admin-title">
+        <span style="font-size: 1.2em; vertical-align: -2px">➕</span> Tambah
+        Barang Baru
+      </div>
+      <div class="admin-desc">
+        Isi data barang baru dengan lengkap.<br />
+        <b>Nama Barang</b>, <b>URL Gambar</b>, <b>Stok Awal</b>, dan harga untuk
+        kedua paket.<br />
+        Barang akan langsung muncul di halaman gacha & stok.
+      </div>
+      <form class="admin-form" id="form-tambah-barang">
+        <label>Nama Barang</label>
+        <input
+          type="text"
+          id="nama-baru"
+          required
+          placeholder="Contoh: Boneka Lucu"
+        />
+        <label>URL Gambar</label>
+        <input
+          type="text"
+          id="gambar-baru"
+          required
+          placeholder="https://..."
+        />
+        <label>Stok Awal</label>
+        <input
+          type="number"
+          id="stok-baru"
+          min="1"
+          required
+          placeholder="cth: 10"
+        />
+        <label>Harga Paket 20.000</label>
+        <input
+          type="number"
+          id="harga-baru-20000"
+          min="1"
+          required
+          placeholder="cth: 20000"
+        />
+        <label>Harga Paket 30.000</label>
+        <input
+          type="number"
+          id="harga-baru-30000"
+          min="1"
+          required
+          placeholder="cth: 30000"
+        />
+        <button type="submit">Tambah Barang</button>
+      </form>
+      <div class="admin-section-title">
+        Barang baru akan otomatis tersedia di stok & gacha
+      </div>
+    </div>
+    <script src="admin.js"></script>
+    <!-- Navbar bawah -->
+    <div id="navbar-placeholder"></div>
+    <script>
+      fetch("navbar.html")
+        .then((r) => r.text())
+        .then((html) => {
+          document.getElementById("navbar-placeholder").innerHTML = html;
+        });
+    </script>
+  </body>
+</html>
